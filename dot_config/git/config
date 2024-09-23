@@ -1,0 +1,23 @@
+[user]
+	name = Adam Tetz
+	email = mail@adamtetz.nl
+
+[init]
+    defaultBranch = main
+
+[status]
+    short = true
+
+[pull]
+	rebase = true
+	autoStash = true
+
+[push]
+	autoSetupRemote = true
+	default = "current"
+
+[rebase]
+	autosquash = true
+
+[includeIf "gitdir/i:~/repositories/kabisa/**"]
+	path = config-kabisa
