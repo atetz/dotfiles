@@ -1,0 +1,13 @@
+#!/usr/bin/env -S bash
+
+echo ""
+echo "==============================================================="
+echo ""
+echo "Copying iTerm2 preferences"
+echo ""
+echo "==============================================================="
+echo ""
+
+echo 
+
+cp -f {{ joinPath .chezmoi.sourceDir "files/com.googlecode.iterm2.plist" }} ~/Library/Preferences/com.googlecode.iterm2.plist
