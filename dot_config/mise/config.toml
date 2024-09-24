@@ -14,3 +14,6 @@ pipx = "latest"
 
 # node packages
 "npm:yarn" = "latest"
+
+[settings]
+experimental = true
