@@ -2,7 +2,6 @@
 node = "22"
 python = "3.12"
 java = "openjdk-23"
-rust = "1.81.0"
 tflint = "latest"
 
 # pipx packages
@@ -12,9 +11,6 @@ pipx = "latest"
 "pipx:isort" = "latest"
 "pipx:pylint" = "latest"
 "pipx:poetry" = "latest"
-
-# cargo packages
-"cargo:rbw" = "latest"
 
 # node packages
 "npm:yarn" = "latest"

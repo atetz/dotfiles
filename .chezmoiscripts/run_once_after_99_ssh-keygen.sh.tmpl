@@ -1,0 +1,47 @@
+#!/usr/bin/env -S bash -i
+
+echo "Checking if all prerequisites are set..."
+if ! command -v glab &> /dev/null; then echo "glab not found!" && exit 1; fi
+if ! command -v gh &> /dev/null; then echo "gh not found!" && exit 1; fi
+
+_ssh_key_title="$(date +%Y%m%d%H%M%S)-{{ .chezmoi.username}}-{{ .chezmoi.hostname }}"
+echo "$_ssh_key_title"
+
+echo ""
+echo "==============================================================="
+echo ""
+echo "Generating SSH key and adding to both gitlab.com and github.com"
+echo ""
+echo "==============================================================="
+echo ""
+
+ssh-keygen -t ed25519
+
+if command -v rbw &> /dev/null; then
+    echo "rbw is installed"
+  
+    echo Fetching github token from bitwarden...
+    export GH_TOKEN="{{ (rbw "github" "--folder" "access_keys").notes }}"
+
+    echo "Adding SSH key to github.com..."
+    gh ssh-key add "${HOME}/.ssh/id_ed25519.pub" --title "${_ssh_key_title}"
+
+    echo Fetching gitlab token from bitwarden...
+    export GITLAB_TOKEN="{{ (rbw "gitlab" "--folder" "access_keys").notes }}"
+
+    echo "Adding SSH key to gitlab.com..."
+    glab ssh-key add "${HOME}/.ssh/id_ed25519.pub" --title "${_ssh_key_title}"
+
+else
+  echo "rbw is not installed. SSH key will not be added to github.com and gitlab.com"
+  exit 1
+fi
+
+
+
+  echo "Adding gitlab.com to SSH Known Hosts..."
+  ssh-keyscan -H gitlab.com >> "${HOME}/.ssh/known_hosts"
+
+  echo "Adding github.com to SSH Known Hosts..."
+  ssh-keyscan -H github.com >> "${HOME}/.ssh/known_hosts"
+
