@@ -3,6 +3,7 @@ node = "22"
 python = "3.12"
 java = "openjdk-23"
 tflint = "latest"
+rust = "1.81.0"
 
 # pipx packages
 pipx = "latest"
@@ -14,6 +15,9 @@ pipx = "latest"
 
 # node packages
 "npm:yarn" = "latest"
+
+# rust packages
+"cargo:rbw" = "latest"
 
 [settings]
 experimental = true
