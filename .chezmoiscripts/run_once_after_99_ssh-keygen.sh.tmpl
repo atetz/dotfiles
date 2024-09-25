@@ -15,7 +15,13 @@ echo ""
 echo "==============================================================="
 echo ""
 
-ssh-keygen -t ed25519
+# check if key exists and stop 
+if test -f "${HOME}/.ssh/id_ed25519" ; then
+  echo "SSH key found!"
+  exit 0
+else
+  ssh-keygen -t ed25519
+fi
 
 if command -v rbw &> /dev/null; then
     echo "rbw is installed"
@@ -36,8 +42,6 @@ else
   echo "rbw is not installed. SSH key will not be added to github.com and gitlab.com"
   exit 1
 fi
-
-
 
   echo "Adding gitlab.com to SSH Known Hosts..."
   ssh-keyscan -H gitlab.com >> "${HOME}/.ssh/known_hosts"
