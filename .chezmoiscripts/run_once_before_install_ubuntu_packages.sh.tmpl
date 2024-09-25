@@ -49,6 +49,7 @@ fi
 if ! check_package glab; then
   echo "glab not found!"
   sudo snap install glab
+  sudo snap connect glab:ssh-keys
 fi
 
 {{ end -}}
