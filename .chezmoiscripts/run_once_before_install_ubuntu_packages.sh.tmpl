@@ -17,12 +17,13 @@ packages=(
     tmux
     ripgrep
     tree
+    unzip
 )
 
 for package in "${packages[@]}"; do
       if ! check_package "$package"; then
         echo "$package not found! Installing $package..."
-        sudo apt-get install -y "$package"
+        sudo apt install -y "$package"
     fi
 done
 
