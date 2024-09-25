@@ -45,3 +45,13 @@ then
   compinit
 fi
 {{- end }}
+{{- if eq .chezmoi.os "linux" }}
+
+if command -v nvim > /dev/null 2>&1;
+then
+ export export PATH="$PATH:/opt/nvim-linux64/bin"
+else
+  echo "nvim is not installed"
+fi
+
+{{- end }}

@@ -11,7 +11,6 @@ packages=(
     findutils
     git
     gh
-    neovim
     jq
     tmux
     ripgrep
@@ -52,4 +51,14 @@ if ! check_package glab; then
   sudo snap connect glab:ssh-keys
 fi
 
+if ! check_package nivm; then
+  echo "nivm not found!"
+
+  curl -LO https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz
+
+  echo "4867de01a17f6083f902f8aa5215b40b0ed3a36e83cc0293de3f11708f1f9793  nvim-linux64.tar.gz" | sha256sum -c
+  
+  sudo rm -rf /opt/nvim
+  sudo tar -C /opt -xzf nvim-linux64.tar.gz
+fi
 {{ end -}}
