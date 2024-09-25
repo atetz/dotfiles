@@ -1,0 +1,46 @@
+{{- if eq .chezmoi.os "linux" }}
+#!/bin/bash
+
+# helper function to check if package is installed
+check_package () {
+  command -v "$1" &> /dev/null
+}
+
+# install packages
+packages=(
+    findutils
+    git
+    gh
+    gitlab-cli
+    neovim
+    jq
+    tmux
+    ripgrep
+    tree
+)
+
+for package in "${packages[@]}"; do
+      if ! check_package "$package"; then
+        echo "$package not found! Installing $package..."
+        sudo apt-get install -y "$package"
+    fi
+done
+
+## install mise
+if ! check_package mise; then
+  echo "mise not found! Installing mise..."
+  sudo apt update -y && apt install -y gpg sudo wget curl
+  sudo install -dm 755 /etc/apt/keyrings
+  wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
+  echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
+  sudo apt update
+  sudo apt install -y mise
+fi
+
+## install starship
+if ! check_package starship; then
+  echo "starship not found!"
+  curl -sS https://starship.rs/install.sh | sh
+fi
+
+{{- end }}
