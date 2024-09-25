@@ -1,5 +1,5 @@
-{{- if eq .chezmoi.os "linux" }}
-#!/bin/bash
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
 
 # helper function to check if package is installed
 check_package () {
@@ -43,4 +43,4 @@ if ! check_package starship; then
   curl -sS https://starship.rs/install.sh | sh
 fi
 
-{{- end }}
+{{ end -}}
