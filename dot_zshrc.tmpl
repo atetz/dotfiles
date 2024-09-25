@@ -34,3 +34,14 @@ if command -v starship > /dev/null 2>&1; then
 else
   echo "starship is not installed"
 fi
+
+{{- if eq .chezmoi.os "darwin" }}
+# make Homebrew’s completions available in zsh
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+{{- end }}
