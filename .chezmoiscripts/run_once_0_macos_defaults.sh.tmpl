@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1054,SC1056,SC1072,SC1073,SC1083
+
+### Adapted from
+# https://github.com/mathiasbynens/dotfiles/blame/master/.macos
+# https://github.com/twpayne/dotfiles/blob/master/run_once_configure-darwin.sh.tmpl
+# https://github.com/herrbischoff/awesome-macos-command-line#contents
+# https://gitlab.com/katrinleinweber/dotfiles/-/blob/main/run_once_0-set-macos-up.sh.tmpl?ref_type=heads
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+# Close open System Preferences, to prevent them overriding this script
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+### General UI/UX
+
+# Avoid screenshots clutter
+# https://sal.dev/macos/macos-screenshotting-tips-and-tricks/
+defaults write com.apple.screencapture location -string "${HOME}/Desktop/Screenshots"
+defaults write com.apple.screencapture type -string "png"
+defaults write com.apple.screencapture disable-shadow -bool true
+
+# Set computer name (as done via System Preferences | Sharing)
+sudo scutil --set ComputerName "{{ .hostname }}"
+sudo scutil --set HostName "{{ .hostname }}"
+sudo scutil --set LocalHostName "{{ .hostname }}"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "{{ .hostname }}"
+
+# Disable automatic capitalization & "smart" punctuation (System Preferences | Keyboard | Text)
+defaults write -g NSAutomaticCapitalizationEnabled -bool false
+defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
+defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Don’t automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
+
+# Autohide dock 
+defaults write com.apple.dock autohide -bool true
+
+
+### Finder
+
+# Show icons for hard drives, servers, and removable media on the desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
+# Show all filename extensions & disable warning when changing them
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Show all hidden files
+# defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Show status & path bars
+defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Display full POSIX path as Finder window title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Keep folders on top when sorting by name
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Don't creat .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Auto-open new Finder window when a volume is mounted
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
+defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+
+# Default to list view (other modes: `icnv`, `clmv`, `glyv`)
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+
+### Close affected applications
+
+for app in "Finder" \
+	"Safari" \
+	"SystemUIServer"; do
+	killall "${app}" &> /dev/null
+done
+
+{{ end -}}
+
+echo "===================="
+echo "Done. Please reboot."

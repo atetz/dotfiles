@@ -1,0 +1,6 @@
+{{- $hostname := promptString "hostname" -}}
+{{- $email := promptString "email" -}}
+
+[data]
+    hostname = {{ $hostname | quote }}
+    email = {{ $email | quote }}
