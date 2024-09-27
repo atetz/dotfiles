@@ -5,6 +5,9 @@ java = "openjdk-23"
 tflint = "latest"
 rust = "1.81.0"
 
+# plugins
+aws-vault = "6.6.1"
+
 # pipx packages
 pipx = "latest"
 "pipx:black" = "latest"
