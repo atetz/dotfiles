@@ -1,5 +1,5 @@
 {
-    "email": "mail@adamtetz.nl",
+    "email": "{{ .email }}",
     "sso_id": null,
     "base_url": null,
     "identity_url": null,
