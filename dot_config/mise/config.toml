@@ -8,6 +8,7 @@ rust = "1.81.0"
 # plugins
 aws-vault = "6.6.1"
 uv = "0.5.5"
+ruff = "0.8.1"
 
 # pipx packages
 pipx = "latest"
