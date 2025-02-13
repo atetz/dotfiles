@@ -1,21 +1,17 @@
 [tools]
 node = "22"
-python = "3.12"
+python = "3.13"
 java = "openjdk-23"
 tflint = "latest"
 rust = "1.81.0"
 
 # plugins
 aws-vault = "6.6.1"
-uv = "0.5.5"
+uv = "0.5.31"
 ruff = "0.8.1"
 
 # pipx packages
 pipx = "latest"
-"pipx:black" = "latest"
-"pipx:flake8" = "latest"
-"pipx:isort" = "latest"
-"pipx:pylint" = "latest"
 "pipx:poetry" = "latest"
 
 # node packages
