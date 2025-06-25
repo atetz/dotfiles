@@ -8,8 +8,7 @@ ruby = "3.3.8"
 
 # plugins
 aws-vault = "6.6.1"
-uv = "0.5.31"
-ruff = "0.9.6"
+uv = "latest"
 
 # pipx packages
 pipx = "latest"
