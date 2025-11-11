@@ -3,11 +3,8 @@ node = "22"
 python = "3.13"
 java = "openjdk-23"
 tflint = "latest"
-rust = "1.81.0"
+rust = "latest"
 ruby = "3.3.8"
-
-# plugins
-aws-vault = "6.6.1"
 uv = "latest"
 
 # pipx packages
@@ -16,9 +13,8 @@ pipx = "latest"
 
 # node packages
 "npm:yarn" = "latest"
-
-# rust packages
-"cargo:rbw" = "latest"
+"npm:@anthropic-ai/claude-code" = "latest"
 
 [settings]
 experimental = true
+idiomatic_version_file_enable_tools = []
