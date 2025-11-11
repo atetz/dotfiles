@@ -14,6 +14,7 @@ pipx = "latest"
 # node packages
 "npm:yarn" = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
+"cargo:rbw" = "latest"
 
 [settings]
 experimental = true
