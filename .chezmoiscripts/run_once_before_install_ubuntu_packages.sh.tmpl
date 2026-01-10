@@ -1,4 +1,5 @@
-{{ if eq .chezmoi.os "linux" -}}
+{{ if eq .osid "ubuntu" }}
+
 #!/usr/bin/env bash
 
 # helper function to check if package is installed
@@ -10,10 +11,7 @@ check_package () {
 packages=(
     findutils
     git
-    gh
-    jq
     tmux
-    ripgrep
     tree
     unzip
     gcc
@@ -38,29 +36,4 @@ if ! check_package mise; then
   sudo apt install -y mise
 fi
 
-## install starship
-if ! check_package starship; then
-  echo "starship not found!"
-  curl -sS https://starship.rs/install.sh | sh
-fi
-
-## install glab
-if ! check_package glab; then
-  echo "glab not found!"
-  sudo snap install glab
-  sudo snap connect glab:ssh-keys
-fi
-
-## install nivm
-
-if ! check_package nivm; then
-  echo "nivm not found!"
-
-  curl -LO https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz
-
-  echo "4867de01a17f6083f902f8aa5215b40b0ed3a36e83cc0293de3f11708f1f9793  nvim-linux64.tar.gz" | sha256sum -c
-  
-  sudo rm -rf /opt/nvim
-  sudo tar -C /opt -xzf nvim-linux64.tar.gz
-fi
 {{ end -}}
