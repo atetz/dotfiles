@@ -1,6 +1,9 @@
 {{- if eq .osid "darwin" -}}
 #!/bin/bash
 
+# needed for some Bad CPU Type in Executable errors
+/usr/sbin/softwareupdate --install-rosetta --agree-to-license
+
 brew bundle --file=/dev/stdin <<EOF
 tap "hashicorp/tap"
 tap "kreuzwerker/taps"
