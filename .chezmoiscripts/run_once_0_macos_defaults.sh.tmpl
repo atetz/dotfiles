@@ -7,7 +7,7 @@
 # https://github.com/herrbischoff/awesome-macos-command-line#contents
 # https://gitlab.com/katrinleinweber/dotfiles/-/blob/main/run_once_0-set-macos-up.sh.tmpl?ref_type=heads
 
-{{ if eq .chezmoi.os "darwin" -}}
+{{- if eq .osid "darwin" -}}
 
 # Close open System Preferences, to prevent them overriding this script
 osascript -e 'tell application "System Preferences" to quit'
