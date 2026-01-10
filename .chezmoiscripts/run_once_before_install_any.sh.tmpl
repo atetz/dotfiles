@@ -28,6 +28,6 @@ echo ""
 if command -v starship > /dev/null 2>&1; then
   echo "StarShip already installed.. Skipping" 
 else
-  mkdir -p /usr/local/bin
+  sudo mkdir -p /usr/local/bin
   curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
