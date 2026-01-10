@@ -21,6 +21,7 @@ jbang = "latest"
 bats = "latest"
 bitwarden = "latest"
 chezmoi = "latest"
+github-cli = "latest"
 
 [settings]
 experimental = true
