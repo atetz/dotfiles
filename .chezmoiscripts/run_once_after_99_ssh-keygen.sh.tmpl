@@ -24,8 +24,9 @@ else
 fi
 
 if command -v bw &> /dev/null; then
-    echo "bw is installed"
+    echo bw is installed
 
+    echo bw login
     bw login {{ .email }}
   
     echo Fetching github token from bitwarden...

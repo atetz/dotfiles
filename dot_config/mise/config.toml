@@ -22,6 +22,7 @@ jbang = "latest"
 "aqua:exercism/cli" = "latest"
 bats = "latest"
 github-cli = "latest"
+bitwarden = "latest"
 
 [settings]
 experimental = true
