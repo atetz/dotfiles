@@ -1,4 +1,5 @@
-{{- if eq .chezmoi.os "darwin" -}}
+{{ if eq .osid "darwin" }}
+
 #!/bin/bash
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
@@ -48,6 +49,7 @@ cask "obsidian"
 cask "vlc"
 cask "nikitabobko/tap/aerospace"
 cask "zen"
+cask "microsoft-teams"
 mas "Brother iPrint&Scan", id: 1193539993
 mas "CopyClip", id: 595191960
 mas "Focus", id: 1554411065
