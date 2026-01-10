@@ -1,7 +1,6 @@
 #!/usr/bin/env -S bash -i
 
 echo "Checking if all prerequisites are set..."
-if ! command -v glab &> /dev/null; then echo "glab not found!" && exit 1; fi
 if ! command -v gh &> /dev/null; then echo "gh not found!" && exit 1; fi
 
 _ssh_key_title="$(date +%Y%m%d%H%M%S)-{{ .chezmoi.username}}-{{ .chezmoi.hostname }}"
