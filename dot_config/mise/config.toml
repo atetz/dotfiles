@@ -1,20 +1,26 @@
 [tools]
 node = "22"
-python = "3.13"
-java = "openjdk-23"
+python = "3.14"
+java = "openjdk-25"
 tflint = "latest"
 rust = "latest"
 ruby = "3.3.8"
-uv = "latest"
-
-# pipx packages
 pipx = "latest"
+jq = "latest"
+neovim = "latest"
+uv = "latest"
+tfenv = "latest"
+pre-commit = "latest"
+ripgrep = "latest"
+maven = "latest"
+jbang = "latest"
 "pipx:poetry" = "latest"
-
-# node packages
 "npm:yarn" = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
 "cargo:rbw" = "latest"
+"aqua:aws/aws-cli" = { version = "latest", symlink_bins = "true" }
+"aqua:exercism/cli" = "latest"
+bats = "latest"
 
 [settings]
 experimental = true
