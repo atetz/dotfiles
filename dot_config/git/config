@@ -18,6 +18,3 @@
 
 [rebase]
 	autosquash = true
-
-[includeIf "gitdir/i:~/repositories/kabisa/**"]
-	path = config-kabisa
