@@ -1,7 +1,5 @@
 #!/usr/bin/env -S bash -i
 
-exec bash
-
 echo "Checking if all prerequisites are set..."
 if ! command -v gh &> /dev/null; then echo "gh not found!" && exit 1; fi
 if ! command -v bw &> /dev/null; then echo "bw not found!" && exit 1; fi
