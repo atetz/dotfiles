@@ -10,7 +10,7 @@ echo "$_ssh_key_title"
 echo ""
 echo "==============================================================="
 echo ""
-echo "Generating SSH key and adding to both gitlab.com and github.com"
+echo "Generating SSH key and adding to github.com"
 echo ""
 echo "==============================================================="
 echo ""
@@ -18,29 +18,22 @@ echo ""
 # check if key exists and stop 
 if test -f "${HOME}/.ssh/id_ed25519" ; then
   echo "SSH key found!"
-  exit 0
+#
 else
   ssh-keygen -t ed25519
 fi
 
 if command -v bw &> /dev/null; then
-    echo bw is installed
+    echo "bw is installed"
 
-    echo bw login
+    echo "bw login"
     bw login {{ .email }}
   
-    echo Fetching github token from bitwarden...
-    export GH_TOKEN="{{ (bw get notes ceb3bd34-accf-4d97-a035-b1f4016f02fb) }}"
+    echo "Fetching github token from bitwarden..."
+    export GH_TOKEN=$(bw get notes ceb3bd34-accf-4d97-a035-b1f4016f02fb)
 
     echo "Adding SSH key to github.com..."
     gh ssh-key add "${HOME}/.ssh/id_ed25519.pub" --title "${_ssh_key_title}"
-
-    # not used gitlab in 2025.
-    # echo Fetching gitlab token from bitwarden...
-    # export GITLAB_TOKEN="{{ (rbw "gitlab" "--folder" "access_keys").notes }}"
-
-    # echo "Adding SSH key to gitlab.com..."
-    # glab ssh-key add "${HOME}/.ssh/id_ed25519.pub" --title "${_ssh_key_title}"
 
 else
   echo "bw is not installed. SSH key will not be added to github.com"
