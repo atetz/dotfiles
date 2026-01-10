@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e
+
+echo ""
+echo "==============================================================="
+echo ""
+echo "Installing Kitty Terminal"
+echo ""
+echo "==============================================================="
+echo ""
+
+if command -v kitty > /dev/null 2>&1; then
+  echo "Kitty already installed.. Skipping" 
+else
+  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+fi
+
+echo ""
+echo "==============================================================="
+echo ""
+echo "Installing StarShip"
+echo ""
+echo "==============================================================="
+echo ""
+
+if command -v starship > /dev/null 2>&1; then
+  echo "StarShip already installed.. Skipping" 
+else
+  curl -sS https://starship.rs/install.sh | sh -s -- -y
+fi
