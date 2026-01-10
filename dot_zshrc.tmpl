@@ -34,7 +34,7 @@ else
   echo "starship is not installed"
 fi
 
-{{- if eq .chezmoi.os "darwin" }}
+{{ if eq .osid "darwin" }}
 # make Homebrew’s completions available in zsh
 if type brew &>/dev/null
 then
@@ -43,18 +43,11 @@ then
   autoload -Uz compinit
   compinit
 fi
-export PATH="$HOME/.local/bin:$PATH"
 {{- end }}
-{{- if eq .chezmoi.os "linux" }}
 
-if [ -d "/opt/nvim-linux64/bin" ];
-then
- export PATH="$PATH:/opt/nvim-linux64/bin"
-else
-  echo "nvim-linux64 is not installed"
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
 fi
-
-{{- end }}
 
 ZSH_DOTENV_PROMPT=always
 export TERM=xterm-256color
