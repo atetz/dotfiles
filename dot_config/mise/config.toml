@@ -19,9 +19,9 @@ jbang = "latest"
 "aqua:aws/aws-cli" = { version = "latest", symlink_bins = "true" }
 "aqua:exercism/cli" = "latest"
 bats = "latest"
-bitwarden = "latest"
 chezmoi = "latest"
 github-cli = "latest"
+"npm:@bitwarden/cli" = "latest"
 
 [settings]
 experimental = true
