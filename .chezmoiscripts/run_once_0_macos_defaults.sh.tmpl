@@ -1,3 +1,4 @@
+{{- if eq .osid "darwin" -}}
 #!/usr/bin/env bash
 # shellcheck disable=SC1054,SC1056,SC1072,SC1073,SC1083
 
@@ -7,7 +8,7 @@
 # https://github.com/herrbischoff/awesome-macos-command-line#contents
 # https://gitlab.com/katrinleinweber/dotfiles/-/blob/main/run_once_0-set-macos-up.sh.tmpl?ref_type=heads
 
-{{- if eq .osid "darwin" -}}
+
 
 # Close open System Preferences, to prevent them overriding this script
 osascript -e 'tell application "System Preferences" to quit'
@@ -92,7 +93,7 @@ for app in "Finder" \
 	killall "${app}" &> /dev/null
 done
 
-{{ end -}}
-
 echo "===================="
-echo "Done. Please reboot."
+echo "Done. Please reboot soon!"
+
+{{ end -}}
