@@ -22,6 +22,9 @@ bats = "latest"
 chezmoi = "latest"
 github-cli = "latest"
 "npm:@bitwarden/cli" = "latest"
+rclone = "latest"
+npm = "11.16.0"
+scaleway = "latest"
 
 [settings]
 experimental = true
