@@ -43,6 +43,12 @@ then
   autoload -Uz compinit
   compinit
 fi
+
+export TESSDATA_PREFIX=/opt/homebrew/share/tessdata/
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
+
 {{- end }}
 
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
@@ -52,4 +58,4 @@ fi
 ZSH_DOTENV_PROMPT=always
 export TERM=xterm-256color
 
-export TESSDATA_PREFIX=/opt/homebrew/share/tessdata/
+

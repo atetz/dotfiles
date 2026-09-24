@@ -1,6 +1,6 @@
 [tools]
 node = "22"
-python = "3.14"
+python = "3.13"
 java = "openjdk-25"
 tflint = "latest"
 rust = "latest"
@@ -25,6 +25,7 @@ github-cli = "latest"
 rclone = "latest"
 npm = "11.16.0"
 scaleway = "latest"
+groovy = "4"
 
 [settings]
 experimental = true
