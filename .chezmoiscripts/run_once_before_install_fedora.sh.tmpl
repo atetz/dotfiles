@@ -37,6 +37,17 @@ sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.loca
 echo ""
 echo "==============================================================="
 echo ""
+echo "Installing git"
+echo ""
+echo "==============================================================="
+echo ""
+
+sudo dnf -y install git
+
+
+echo ""
+echo "==============================================================="
+echo ""
 echo "Installing mise"
 echo ""
 echo "==============================================================="
